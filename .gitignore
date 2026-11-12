@@ -8,7 +8,7 @@ __pycache__/
 .mypy_cache/
 
 # Data files (keep out of git)
-data/
+/data/
 *.csv
 *.tsv
 *.parquet
