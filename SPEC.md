@@ -17,6 +17,7 @@ Hypothesis: text helps most for cold-start books, meaning books with very few re
 - UCSD Goodreads Book Graph: a filtered fiction subset, starting with one or two genres.
 - Open Library, to match titles from my own reading history.
 - My own Book Tracker CSV, for a personal demo.
+- Poetry is the development subset, used to build and debug the pipeline. The final genre is not chosen yet.
 
 ## Models (five, behind one shared interface)
 
@@ -33,6 +34,13 @@ Hypothesis: text helps most for cold-start books, meaning books with very few re
 - Slice results by how many interactions each test book has (cold-start versus popular).
 - Bootstrap 95% confidence intervals over users.
 - Tune on the validation split. Run the test split once, at the end.
+
+### Interaction rules
+
+- Positive interaction: is_read = 1, any rating. A read book with rating = 0 counts; unread rows are not used. ([why](DECISIONS.md#2026-11-11-positive-interaction))
+- Order: by date_added, with ties broken by date_updated, then book_id. Rows with no date_added are dropped and counted. ([why](DECISIONS.md#2026-11-11-ordering-timestamp))
+- Split: per user, the last positive is test, the second-to-last is validation, and the rest is train. ([why](DECISIONS.md#2026-11-11-train-validation-and-test-split))
+- Minimum history: 5 positives to be evaluated. Users with fewer stay in train only. ([why](DECISIONS.md#2026-11-11-minimum-user-history))
 
 ## Serving
 
