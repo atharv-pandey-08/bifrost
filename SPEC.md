@@ -1,10 +1,10 @@
-# Shelf-Aware: Spec
+# Bifrost: Spec
 
-Last updated: 2026-11-10. This is a living document. Change it when a decision changes, and log why in DECISIONS.md.
+Last updated: 2026-11-11. This is a living document. Change it when a decision changes, and log why in DECISIONS.md.
 
 ## What it does
 
-Shelf-Aware recommends fiction books from a reader's reading history (their "shelf") and gives a reason for each recommendation. It compares five recommender models on the same held-out data, then serves the results through a small API and a demo page.
+Bifrost recommends fiction books from a reader's reading history (their "shelf") and gives a reason for each recommendation. It compares five recommender models on the same held-out data, then serves the results through a small API and a demo page.
 
 ## The question
 
