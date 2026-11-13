@@ -1,6 +1,6 @@
 # Bifrost: Spec
 
-Last updated: 2026-11-11. This is a living document. Change it when a decision changes, and log why in DECISIONS.md.
+Last updated: 2026-11-13. This is a living document. Change it when a decision changes, and log why in DECISIONS.md.
 
 ## What it does
 
@@ -41,6 +41,7 @@ Hypothesis: text helps most for cold-start books, meaning books with very few re
 - Order: by date_added, with ties broken by date_updated, then book_id. Rows with no date_added are dropped and counted. ([why](DECISIONS.md#2026-11-11-ordering-timestamp))
 - Split: per user, the last positive is test, the second-to-last is validation, and the rest is train. ([why](DECISIONS.md#2026-11-11-train-validation-and-test-split))
 - Minimum history: 5 positives to be evaluated. Users with fewer stay in train only. ([why](DECISIONS.md#2026-11-11-minimum-user-history))
+- Same-day ties: report every metric on all evaluated users and on a clean slice where the held-out book was added on a later day than every earlier positive. ([why](DECISIONS.md#2026-11-13-same-day-ties-in-the-split))
 
 ## Serving
 
