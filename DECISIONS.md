@@ -51,6 +51,13 @@ Every significant choice goes here. Each entry has the decision, the alternative
 - **Reason:** 66,657 users (23.6% of readers) have 5 or more positives. With a minimum of 3, a user would have just 1 book left to train on. With a minimum of 10, only 27,912 users (9.9%) would be evaluated. I keep light users in training because they matter for cold start: dropping them would remove 29.4% of positives and leave 1,055 books with no reads at all.
 - **Revisit if:** the models do better when light users are left out of training, or evaluating 66,657 users is too slow to tune with.
 
+## 2026-11-13: Same-day ties in the split
+
+- **Decision:** Keep the per-user split (last positive is test, second-to-last is validation). Report every metric twice: on all 66,657 evaluated users, and on a clean slice where the held-out book was added on a later day than every earlier positive. For test that slice is 47,030 users (70.6%); for validation it is 41,065 users (61.6%). The leakage test asserts that each test book's date_added is at least as late as every training book's, and strictly a later day inside the clean slice.
+- **Alternatives rejected:** (a) split by day, with the whole last day as test and the day before as validation; (b) one global date cutoff for all users; (b′) a global cutoff with each user's first book after it as test.
+- **Reason:** Same-day ties are common: 29.4% of evaluated users at the test/validation boundary and 38.4% at validation/train. Splitting by day would leave 14,671 users (22.0%) with no training books and cut training to under half for 18,218 (27.3%). A global cutoff (validation at the 80th percentile of positives, test at the 90th) gives only 15,404 test users with at least 3 training books, and 52.1% of test positives come from users with no history before the cutoff. The next-book variant evaluates only 8,621 users. No single day dominates (the busiest holds 0.18% of positives across 1,289 users), so the ties come from many people shelving small batches, not from a few bulk imports. Keeping the rule keeps every evaluated user, and the clean slice measures how much the ties matter. All numbers are from poetry, before k-core filtering and work mapping.
+- **Revisit if:** results on the clean slice differ from the full set by more than the confidence interval, the final genre has a much higher same-day share, or I need a guarantee against cross-user leakage. In that case I'd add (b′) as a secondary check.
+
 ## Template for new entries
 
 ## YYYY-MM-DD: short title
