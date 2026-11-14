@@ -8,6 +8,7 @@ Every significant choice goes here. Each entry has the decision, the alternative
 - **Alternatives rejected:** pip with venv; conda; poetry.
 - **Reason:** uv is fast, produces a lockfile (uv.lock) so anyone can recreate my exact environment, and handles the environment and dependencies in one tool.
 - **Revisit if:** a key library, such as implicit, won't install on Apple Silicon. The fallback is a small BPR model written in PyTorch.
+- **Checked 2026-11-13:** implicit 0.7.3 installs and fits a small ALS model on Apple Silicon (arm64, CPU) with Python 3.12, in a throwaway environment. The PyTorch BPR fallback isn't needed for now.
 
 ## 2026-11-10: Public datasets only
 
@@ -57,6 +58,13 @@ Every significant choice goes here. Each entry has the decision, the alternative
 - **Alternatives rejected:** (a) split by day, with the whole last day as test and the day before as validation; (b) one global date cutoff for all users; (b′) a global cutoff with each user's first book after it as test.
 - **Reason:** Same-day ties are common: 29.4% of evaluated users at the test/validation boundary and 38.4% at validation/train. Splitting by day would leave 14,671 users (22.0%) with no training books and cut training to under half for 18,218 (27.3%). A global cutoff (validation at the 80th percentile of positives, test at the 90th) gives only 15,404 test users with at least 3 training books, and 52.1% of test positives come from users with no history before the cutoff. The next-book variant evaluates only 8,621 users. No single day dominates (the busiest holds 0.18% of positives across 1,289 users), so the ties come from many people shelving small batches, not from a few bulk imports. Keeping the rule keeps every evaluated user, and the clean slice measures how much the ties matter. All numbers are from poetry, before k-core filtering and work mapping.
 - **Revisit if:** results on the clean slice differ from the full set by more than the confidence interval, the final genre has a much higher same-day share, or I need a guarantee against cross-user leakage. In that case I'd add (b′) as a secondary check.
+
+## 2026-11-13: Young Adult as the main genre
+
+- **Decision:** Use the Goodreads Young Adult subset as the main dataset (34,919,254 interactions, 93,398 books). Fantasy & Paranormal is downloaded as a backup. Poetry stays as the small development and test subset.
+- **Alternatives rejected:** Fantasy & Paranormal (55,397,550 interactions, 258,585 books); Romance; Mystery, Thriller & Crime; Children; Comics & Graphic.
+- **Reason:** Young Adult is what I actually read, and it fits the "character-driven fiction" pitch. It has the smallest catalog of the fiction genres I considered, which matters because the text model embeds every book's description and reviews: 93k books instead of 259k for Fantasy. 35M interactions is still real scale for a laptop. Mystery leans plot-driven, and Children and Comics don't match what I read. Goodreads has no "adult fiction" subset, so the adult books I read are spread across other genres.
+- **Revisit if:** Young Adult is too dense for text to show any cold-start advantage, or personal mode matches too few of my books. Known limit: personal mode will mostly miss the adult fiction in my Book Tracker.
 
 ## Template for new entries
 

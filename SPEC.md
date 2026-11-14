@@ -14,10 +14,10 @@ Hypothesis: text helps most for cold-start books, meaning books with very few re
 
 ## Data (all public)
 
-- UCSD Goodreads Book Graph: a filtered fiction subset, starting with one or two genres.
+- UCSD Goodreads Book Graph: the Young Adult subset (34,919,254 interactions, 93,398 books). ([why](DECISIONS.md#2026-11-13-young-adult-as-the-main-genre))
 - Open Library, to match titles from my own reading history.
 - My own Book Tracker CSV, for a personal demo.
-- Poetry is the development subset, used to build and debug the pipeline. The final genre is not chosen yet.
+- Poetry is the development subset, used to build and debug the pipeline. Fantasy & Paranormal is a downloaded backup.
 
 ## Models (five, behind one shared interface)
 
