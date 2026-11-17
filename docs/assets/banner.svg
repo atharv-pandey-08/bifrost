@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" width="1000" height="320" role="img" aria-label="Bifrost: a fiction recommender that measures when book text beats reader behaviour">
+  <style>
+    .flow { animation: flow 2.4s linear infinite; }
+    .pulse { animation: pulse 3.2s ease-in-out infinite; }
+    .tw1 { animation: twinkle 2.8s ease-in-out infinite; }
+    .tw2 { animation: twinkle 3.6s ease-in-out infinite 0.9s; }
+    .tw3 { animation: twinkle 4.4s ease-in-out infinite 1.7s; }
+    @keyframes flow { to { stroke-dashoffset: -88; } }
+    @keyframes pulse { 0%, 100% { opacity: .55; } 50% { opacity: .95; } }
+    @keyframes twinkle { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
+    /* Respect the system "reduce motion" setting. */
+    @media (prefers-reduced-motion: reduce) {
+      .flow, .pulse, .tw1, .tw2, .tw3 { animation: none; }
+    }
+  </style>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0c14"/>
+      <stop offset="0.55" stop-color="#141226"/>
+      <stop offset="1" stop-color="#1d0f1c"/>
+    </linearGradient>
+    <linearGradient id="bridge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff3d5a"/>
+      <stop offset="0.25" stop-color="#ffb02e"/>
+      <stop offset="0.5" stop-color="#3ddc97"/>
+      <stop offset="0.75" stop-color="#3da5ff"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+    <!-- Comic-book halftone dots, faded toward the top. -->
+    <pattern id="dots" width="9" height="9" patternUnits="userSpaceOnUse">
+      <circle cx="4.5" cy="4.5" r="1.5" fill="#ffffff"/>
+    </pattern>
+    <linearGradient id="fade" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="dotmask"><rect width="1000" height="320" fill="url(#fade)"/></mask>
+    <filter id="glow" x="-20%" y="-50%" width="140%" height="200%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+
+  <rect width="1000" height="320" fill="url(#bg)"/>
+  <rect width="1000" height="320" fill="url(#dots)" opacity="0.07" mask="url(#dotmask)"/>
+
+  <!-- Stars -->
+  <g fill="#ffffff">
+    <circle class="tw1" cx="90" cy="48" r="1.8"/><circle class="tw2" cx="210" cy="90" r="1.4"/>
+    <circle class="tw3" cx="340" cy="38" r="1.6"/><circle class="tw1" cx="470" cy="70" r="1.3"/>
+    <circle class="tw2" cx="640" cy="42" r="1.7"/><circle class="tw3" cx="760" cy="84" r="1.4"/>
+    <circle class="tw1" cx="880" cy="52" r="1.8"/><circle class="tw2" cx="940" cy="120" r="1.3"/>
+  </g>
+
+  <!-- The bridge: a soft glow underneath, a solid base, then moving light on top. -->
+  <path d="M -30 300 Q 500 -80 1030 300" fill="none" stroke="url(#bridge)" stroke-width="22" class="pulse" filter="url(#glow)"/>
+  <path d="M -30 300 Q 500 -80 1030 300" fill="none" stroke="url(#bridge)" stroke-width="9" stroke-linecap="round" opacity="0.9"/>
+  <path class="flow" d="M -30 300 Q 500 -80 1030 300" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-dasharray="30 58" opacity="0.85"/>
+
+  <!-- Comic caption box -->
+  <g transform="translate(36 28)">
+    <rect x="5" y="5" width="316" height="30" fill="#000" opacity="0.55"/>
+    <rect width="316" height="30" fill="#ffd23f" stroke="#0a0c14" stroke-width="2"/>
+    <text x="12" y="20.5" font-family="'Arial Black', Impact, Arial, sans-serif" font-size="12.5" textLength="292" lengthAdjust="spacingAndGlyphs" fill="#0a0c14">A STORY OF BOOKS &amp; BEHAVIOUR</text>
+  </g>
+
+  <!-- Title: offset shadow first, then the main word, for a printed-comic look. -->
+  <g font-family="Impact, 'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-size="104" letter-spacing="10" text-anchor="middle">
+    <text x="506" y="222" textLength="560" lengthAdjust="spacingAndGlyphs" fill="#ff3d5a">BIFROST</text>
+    <text x="500" y="216" textLength="560" lengthAdjust="spacingAndGlyphs" fill="#ffffff" stroke="#0a0c14" stroke-width="3" paint-order="stroke">BIFROST</text>
+  </g>
+
+  <text x="500" y="262" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="19" textLength="720" lengthAdjust="spacingAndGlyphs" fill="#d7d9e8">A fiction recommender that measures when book text beats reader behaviour</text>
+
+  <!-- Panel border -->
+  <rect x="3" y="3" width="994" height="314" fill="none" stroke="#ffffff" stroke-opacity="0.85" stroke-width="3"/>
+</svg>
