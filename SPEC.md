@@ -1,6 +1,6 @@
 # Bifrost: Spec
 
-Last updated: 2026-11-13. This is a living document. Change it when a decision changes, and log why in DECISIONS.md.
+Last updated: 2026-11-17. This is a living document. Change it when a decision changes, and log why in DECISIONS.md.
 
 ## What it does
 
@@ -14,10 +14,11 @@ Hypothesis: text helps most for cold-start books, meaning books with very few re
 
 ## Data (all public)
 
-- UCSD Goodreads Book Graph: the Young Adult subset (34,919,254 interactions, 93,398 books). ([why](DECISIONS.md#2026-11-13-young-adult-as-the-main-genre))
+- UCSD Goodreads Book Graph: the Young Adult subset (34,919,254 interactions, 93,398 books) and the Fantasy & Paranormal subset (55,397,550 interactions, 258,585 books), combined into one data set. Each work is counted once, so the 9,514 works in both subsets are not double-counted. ([why](DECISIONS.md#2026-11-17-merging-data-sets-into-one-big-one), [why Young Adult](DECISIONS.md#2026-11-13-young-adult-as-the-main-genre))
 - Open Library, to match titles from my own reading history.
 - My own Book Tracker CSV, for a personal demo.
-- Poetry is the development subset, used to build and debug the pipeline. Fantasy & Paranormal is a downloaded backup.
+- Poetry is the development subset, used to build and debug the pipeline.
+- Fiction only: a work is kept if its top 10 shelves include a fiction tag and no non-fiction tag. Works with both kinds of tag, or with neither, are dropped. On 2026-11-17 this left 35,566,284 positives across 132,980 works and 700,313 readers, before the k-core filter. The tag lists live in the code.
 
 ## Models (five, behind one shared interface)
 
@@ -38,6 +39,7 @@ Hypothesis: text helps most for cold-start books, meaning books with very few re
 ### Interaction rules
 
 - Positive interaction: is_read = 1, any rating. A read book with rating = 0 counts; unread rows are not used. ([why](DECISIONS.md#2026-11-11-positive-interaction))
+- Works, not editions: positives are counted per reader and work, so two editions of one book count once, on the earliest date_added. A reader who appears in both subsets gets one combined history.
 - Order: by date_added, with ties broken by date_updated, then book_id. Rows with no date_added are dropped and counted. ([why](DECISIONS.md#2026-11-11-ordering-timestamp))
 - Split: per user, the last positive is test, the second-to-last is validation, and the rest is train. ([why](DECISIONS.md#2026-11-11-train-validation-and-test-split))
 - Minimum history: 5 positives to be evaluated. Users with fewer stay in train only. ([why](DECISIONS.md#2026-11-11-minimum-user-history))
