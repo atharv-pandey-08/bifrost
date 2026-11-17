@@ -18,7 +18,7 @@ Hypothesis: text helps most for cold-start books, meaning books with very few re
 - Open Library, to match titles from my own reading history.
 - My own Book Tracker CSV, for a personal demo.
 - Poetry is the development subset, used to build and debug the pipeline.
-- Fiction only: a work is kept if its top 10 shelves include a fiction tag and no non-fiction tag. Works with both kinds of tag, or with neither, are dropped. On 2026-11-17 this left 35,566,284 positives across 132,980 works and 700,313 readers, before the k-core filter. The tag lists live in the code.
+- Fiction only: a work is kept if its top 10 shelves, counting any shelves tied with the 10th, include a fiction tag and no non-fiction tag. Works with both kinds of tag, or with neither, are dropped. On 2026-11-17 this left 35,617,583 positives, 138,782 works and 700,596 readers, before the k-core filter. The tag lists live in the code.
 
 ## Models (five, behind one shared interface)
 
