@@ -13,7 +13,7 @@ resolution-markers = [
 [[package]]
 name = "bifrost"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "duckdb" },
     { name = "pandas" },
