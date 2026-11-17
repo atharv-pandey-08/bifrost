@@ -66,6 +66,13 @@ Every significant choice goes here. Each entry has the decision, the alternative
 - **Reason:** Young Adult is what I actually read, and it fits the "character-driven fiction" pitch. It has the smallest catalog of the fiction genres I considered, which matters because the text model embeds every book's description and reviews: 93k books instead of 259k for Fantasy. 35M interactions is still real scale for a laptop. Mystery leans plot-driven, and Children and Comics don't match what I read. Goodreads has no "adult fiction" subset, so the adult books I read are spread across other genres.
 - **Revisit if:** Young Adult is too dense for text to show any cold-start advantage, or personal mode matches too few of my books. Known limit: personal mode will mostly miss the adult fiction in my Book Tracker.
 
+## 2026-11-17: Merging data sets into one big one
+
+- **Decision** Collected all the data for YA and fantasy instead of fantasy just being a backup option
+  **Alternatives rejected** Having the standalone YA set and keeping the fantasy set as a backup
+  **Reason** Although Young Adult is a good data set, there was no reason to also not include fantasy. I like fantasy too so I want to include it instead of restricting myself to just the YA data set
+  **Revisit if** This combined data set is to much further down the road in this project
+
 ## Template for new entries
 
 ## YYYY-MM-DD: short title
