@@ -1,17 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 28" width="1000" height="28" role="img" aria-label="divider">
   <defs>
     <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#ff3d5a" stop-opacity="0"/>
-      <stop offset="0.2" stop-color="#ffb02e"/>
-      <stop offset="0.5" stop-color="#3ddc97"/>
-      <stop offset="0.8" stop-color="#3da5ff"/>
-      <stop offset="1" stop-color="#a855f7" stop-opacity="0"/>
+      <stop offset="0" stop-color="#b8913f" stop-opacity="0"/>
+      <stop offset="0.3" stop-color="#b8913f"/>
+      <stop offset="0.7" stop-color="#b8913f"/>
+      <stop offset="1" stop-color="#b8913f" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <rect x="0" y="12.5" width="1000" height="3" fill="url(#line)"/>
-  <g fill="#ffd23f" stroke="#0a0c14" stroke-width="1.5">
-    <path d="M500 2 L514 14 L500 26 L486 14 Z"/>
-    <path d="M452 8 L460 14 L452 20 L444 14 Z"/>
-    <path d="M548 8 L556 14 L548 20 L540 14 Z"/>
+  <rect x="0" y="13" width="1000" height="1.6" fill="url(#line)"/>
+  <!-- A small open book in the middle -->
+  <g fill="#e9dcc0" stroke="#7a5a2a" stroke-width="1.3" stroke-linejoin="round">
+    <path d="M500 22 L478 18 L478 6 L500 10 Z"/>
+    <path d="M500 22 L522 18 L522 6 L500 10 Z"/>
+  </g>
+  <g fill="#b8913f">
+    <path d="M452 14 L458 9 L464 14 L458 19 Z"/>
+    <path d="M536 14 L542 9 L548 14 L542 19 Z"/>
   </g>
 </svg>

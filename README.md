@@ -2,9 +2,9 @@
 
 <img src="docs/assets/banner.svg" alt="Bifrost: a fiction recommender that measures when book text beats reader behaviour" width="100%">
 
-![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![DuckDB](https://img.shields.io/badge/DuckDB-Parquet-FFF000?style=for-the-badge&logo=duckdb&logoColor=black)
-![Status](https://img.shields.io/badge/Status-In%20development-ff3d5a?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.12-5c4033?style=flat-square&labelColor=1a1410&logo=python&logoColor=e9dcc0)
+![DuckDB](https://img.shields.io/badge/DuckDB-Parquet-5c4033?style=flat-square&labelColor=1a1410&logo=duckdb&logoColor=e9dcc0)
+![Status](https://img.shields.io/badge/Status-In%20development-6b2a33?style=flat-square&labelColor=1a1410)
 
 **Give it a reader's shelf. Get ranked books back, with a reason for each.**
 Then find out, with real numbers, whether the book's *text* actually helped.
@@ -13,7 +13,7 @@ Then find out, with real numbers, whether the book's *text* actually helped.
 
 <img src="docs/assets/divider.svg" alt="" width="100%">
 
-## Origin story
+## Prologue
 
 I read a lot, and my favourites are character-driven: *Sword of Kaigen*, *The Goldfinch*, *Norwegian Wood*. Recommenders keep pushing me bestsellers. They learn from what readers *do*, so they lean on popular books and have nothing to say about a new book that nobody has read yet. That gap is called the **cold-start problem**.
 
@@ -27,17 +27,19 @@ My hypothesis is that text helps most for books with very few readers. It may be
 
 <img src="docs/assets/divider.svg" alt="" width="100%">
 
-## Mission log
+## Chapters
 
-| | Stage | Status |
+| | Chapter | Status |
 |---|---|---|
-| ✅ | **Setup and decisions:** spec, rules, genre, split design | Done |
-| ✅ | **Ingest:** raw Goodreads files into typed Parquet with DuckDB | Done |
-| 🔨 | **Data pipeline:** positives, merging editions, k-core filter, stats report | In progress |
-| ⬜ | **Split:** per-user temporal split with leakage tests | Next |
-| ⬜ | **Five models:** popularity, item-kNN, matrix factorization, text, hybrid | Planned |
-| ⬜ | **Evaluation:** NDCG@20 and Recall@20 with bootstrap confidence intervals | Planned |
-| ⬜ | **Serving and demo:** FastAPI, HNSW index, Gradio page | Planned |
+| ● | **Setup and decisions:** spec, rules, genre, split design | Done |
+| ● | **Ingest:** raw Goodreads files into typed Parquet with DuckDB | Done |
+| ◐ | **Data pipeline:** positives, merging editions, k-core filter, stats report | In progress |
+| ○ | **Split:** per-user temporal split with leakage tests | Next |
+| ○ | **Five models:** popularity, item-kNN, matrix factorization, text, hybrid | Planned |
+| ○ | **Evaluation:** NDCG@20 and Recall@20 with bootstrap confidence intervals | Planned |
+| ○ | **Serving and demo:** FastAPI, HNSW index, Gradio page | Planned |
+
+*● done, ◐ in progress, ○ not started.*
 
 **What exists today** (real numbers, from the Goodreads Young Adult subset):
 
@@ -49,7 +51,7 @@ There are **no model results yet**, so there's no results table here. It will go
 
 <img src="docs/assets/divider.svg" alt="" width="100%">
 
-## Rules of engagement
+## Marginalia
 
 Every significant choice is logged in [`DECISIONS.md`](DECISIONS.md) with the alternatives I rejected and what would change my mind. Three that shape the project:
 
@@ -61,7 +63,7 @@ The full design is in [`SPEC.md`](SPEC.md).
 
 <img src="docs/assets/divider.svg" alt="" width="100%">
 
-## The five models
+## The cast
 
 1. **Popularity:** recommend the most-read books. The baseline everything must beat.
 2. **Item-kNN:** "readers who read X also read Y".
@@ -71,7 +73,7 @@ The full design is in [`SPEC.md`](SPEC.md).
 
 All five sit behind one interface, so they're compared on the same split with the same metrics.
 
-## Try it
+## The reading room
 
 You need [uv](https://docs.astral.sh/uv/) and Python 3.12.
 
@@ -100,6 +102,6 @@ Games and stories that shaped how I think: **God of War**, **Uncharted**, **Batm
 
 **Atharv Pandey**, first-year Software Engineering student at the University of Waterloo.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Atharv%20Pandey-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/atharv-pandey-946992349)
-[![Email](https://img.shields.io/badge/Email-atharvpandey008%40gmail.com-ea4335?style=flat-square&logo=gmail&logoColor=white)](mailto:atharvpandey008@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-atharv--pandey--08-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/atharv-pandey-08)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Atharv%20Pandey-5c4033?style=flat-square&labelColor=1a1410&logo=linkedin&logoColor=e9dcc0)](https://www.linkedin.com/in/atharv-pandey-946992349)
+[![Email](https://img.shields.io/badge/Email-atharvpandey008%40gmail.com-5c4033?style=flat-square&labelColor=1a1410&logo=gmail&logoColor=e9dcc0)](mailto:atharvpandey008@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-atharv--pandey--08-5c4033?style=flat-square&labelColor=1a1410&logo=github&logoColor=e9dcc0)](https://github.com/atharv-pandey-08)
